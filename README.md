@@ -40,9 +40,6 @@ ping 192.168.90.6
 **Rule triggered:** `sid:1000001`
 
 **Result:** Snort generated an alert for each ICMP echo request received from the Kali attacker, confirming basic reconnaissance/host-discovery activity is visible to the IDS.
-
-![ICMP alert triggered](screenshots/01_icmp_alert.png)
-
 ---
 
 ### 1.2 SSH Connection Attempt Detection
@@ -50,14 +47,14 @@ ping 192.168.90.6
 **Attack command (Kali):**
 
 ```bash
-ssh root@192.168.90.6
+ssh soc1@192.168.90.3
 ```
 
 **Rule triggered:** `sid:1000002`
 
 **Result:** Snort detected and alerted on the inbound TCP connection attempt to port 22, regardless of whether authentication succeeded — confirming visibility into SSH access attempts at the network layer.
 
-![SSH alert triggered](screenshots/02_ssh_alert.png)
+![SSH alert triggered](https://github.com/Abin-2820/Snort_IDS-IPS_Network-Intrusion-Detection-Prevention-Lab/blob/e80e95286999287cd66f2e7b1f4e5c3fadc51e56/Screenshots/1%20-%20Screenshot%202026-06-24%20143320.png)
 
 ---
 
@@ -73,7 +70,8 @@ ftp 192.168.90.6
 
 **Result:** Snort detected and alerted on the inbound connection to port 21, flagging the FTP authentication attempt from the attacking host.
 
-![FTP alert triggered](screenshots/03_ftp_alert.png)
+![FTP alert triggered](https://github.com/Abin-2820/Snort_IDS-IPS_Network-Intrusion-Detection-Prevention-Lab/blob/e80e95286999287cd66f2e7b1f4e5c3fadc51e56/Screenshots/3%20-%20Screenshot%202026-06-24%20143725.png)
+![Full](https://github.com/Abin-2820/Snort_IDS-IPS_Network-Intrusion-Detection-Prevention-Lab/blob/e80e95286999287cd66f2e7b1f4e5c3fadc51e56/Screenshots/4%20-%20Screenshot%202026-06-24%20143838.png)
 
 ---
 
@@ -98,9 +96,9 @@ hping3 -S -p 80 --flood 192.168.90.3
 
 **Result:** Once the SYN packet rate from the attacking host exceeded the threshold, Snort actively dropped the offending traffic inline. The targeted service on `192.168.90.3:80` remained reachable and responsive throughout the attack, confirming the IPS rule successfully **prevented** the DoS condition rather than merely detecting it.
 
-![Snort IPS drop log showing SYN Flood Blocked alerts](screenshots/04_ips_drop_log.png)
+![Snort IPS drop log showing SYN Flood Blocked alerts](https://github.com/Abin-2820/Snort_IDS-IPS_Network-Intrusion-Detection-Prevention-Lab/blob/e80e95286999287cd66f2e7b1f4e5c3fadc51e56/Screenshots/7%20-%20Screenshot%202026-06-04%20201109.png)
 
-![Target service availability confirmed during attack](screenshots/05_service_availability.png)
+![Target service availability confirmed during attack](https://github.com/Abin-2820/Snort_IDS-IPS_Network-Intrusion-Detection-Prevention-Lab/blob/e80e95286999287cd66f2e7b1f4e5c3fadc51e56/Screenshots/6%20-%20Screenshot%202026-06-04%20195744.png)
 
 ---
 
